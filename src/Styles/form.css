@@ -31,18 +31,19 @@ body{
     width: 75%;
     padding: 20px;
     margin:30px;
-    background-color: rgb(80, 3, 80);
-    color: white;
+    background-color: rgb(66, 10, 66);
+    color: rgb(221, 205, 205);
     border-radius: 15px;
     font-family: century gothic;
 }
 
 .select{
-    width: 390px;
+    width: 376px;
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
     font-family: century gothic;
+    outline-offset: 2px;
 }
 
 .form:hover{
@@ -61,6 +62,9 @@ input {
     padding: 10px;
     border-radius: 10px;
     font-family: century gothic;
+    background-color: #e2e2e2;
+    outline-offset: 2px;
+    
 }
 
 .non-valid{

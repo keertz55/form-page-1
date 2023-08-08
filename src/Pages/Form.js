@@ -12,7 +12,7 @@ export default function Form() {
         city: "",
         postcode: ""
     })
-
+    const [searchQuery, setSearchQuery] = useState('');
 
     const [formError, setFormError] = useState({})
 
@@ -63,24 +63,6 @@ export default function Form() {
             default:
                 break;
         }
-        // setFormdata((prevForm) => ({
-        //     ...prevForm,
-        //     mail: document.getElementById('mail').value,
-        //     firstname:document.getElementById('firstname').value,
-        //     lastname: document.getElementById('lastname').value,
-        //     dob:document.getElementById('dob').value,
-        //     mobile:document.getElementById('mobile').value,
-        //     city:document.getElementById('city').value,
-        //     postcode:document.getElementById('zipcode').value
-        // }))
-
-        // var mail = document.getElementById('mail').value
-        // var firstname = document.getElementById('firstname').value
-        // var lastname = document.getElementById('lastname').value
-        // var dob = document.getElementById('dob').value
-        // var mobile = document.getElementById('mobile').value
-        // var city = document.getElementById('city').value
-        // var postcode = document.getElementById('zipcode').value
     }
 
     const validateForm = () => {
@@ -168,10 +150,39 @@ export default function Form() {
     // useEffect(() => {
     //     submitData();
     // }, []);
-    
+
     //     finalData.map((e) => {
     //     //  return
     //   })
+
+    // const handlesearch = () => {
+    //     // var searchInput = document.getElementById('searchInput');
+    //     // var table = document.getElementById('dataTable');
+    //     // var rows = table.getElementsByTagName('tr');
+
+    //     // searchInput.addEventListener('input', function () {
+    //     //     var filter = searchInput.value.toLowerCase();
+    //     //     for (var i = 0; i < rows.length; i++) {
+    //     //         var rowData = rows[i].textContent.toLowerCase();
+    //     //         if (rowData.indexOf(filter) > -1) {
+    //     //             rows[i].style.display = '';
+    //     //         } else {
+    //     //             rows[i].style.display = 'none';
+    //     //         }
+    //     //     }
+    //     // });
+
+    // }
+
+    const handleSearchInputChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
+
+
+    const filteredData = finalData?.filter((row) =>
+        row.firstname.toLowerCase().includes(searchQuery.toLowerCase()
+        )
+    );
 
     return (
         <div className='container row'>
@@ -238,9 +249,9 @@ export default function Form() {
 
             </div>
             <div className='column'>
-                <input className="search-content" type="text" placeholder="Search" onChange={(e) => handleform(e)} />
-                
-                <table id="customers">
+                <input className="search-content" type="text" id='searchInput' placeholder="Search" onChange={handleSearchInputChange} />
+
+                <table id="dataTable">
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
@@ -250,19 +261,19 @@ export default function Form() {
                         <th>Zipcode</th>
                     </tr>
                     <tbody>
-                    {finalData?.map((item, index) => {
-                        return (
-                            <tr key={index}>
-                                <td>{item?.firstname}</td>
-                                <td>{item?.mail}</td>
-                                <td>{item?.dob}</td>
-                                <td>{item?.mobile}</td>
-                                <td>{item?.city}</td>
-                                <td>{item?.postcode}</td>
-                            </tr>
+                        {filteredData?.map((item, index) => {
+                            return (
+                                <tr key={index}>
+                                    <td>{item?.firstname}</td>
+                                    <td>{item?.mail}</td>
+                                    <td>{item?.dob}</td>
+                                    <td>{item?.mobile}</td>
+                                    <td>{item?.city}</td>
+                                    <td>{item?.postcode}</td>
+                                </tr>
 
-                        )
-                    })}
+                            )
+                        })}
 
                     </tbody>
                 </table>
